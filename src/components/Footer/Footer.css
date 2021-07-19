@@ -1,0 +1,31 @@
+
+footer {
+    min-height: 30vh;
+    height: auto;
+    display: flex;
+}
+
+.footer-cont {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.just-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width:700px) {
+    .footer-cont {
+        flex-direction: column;
+    }
+}

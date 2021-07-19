@@ -1,0 +1,31 @@
+.ItemDetail-Container{
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+.detail_underCard{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0 ;
+    flex-direction: column;
+    align-items: center;
+  
+}
+.underCard_container{
+    width: 80%;
+    background-color: #12293681;
+     border-radius: 20px;  
+}
+.detail_underCard h2, p{
+     
+     color: white;
+}
+.buton_hide{
+    background-color: #122936ee;
+    color: white;
+    font-size: 1.1rem;
+    text-transform: capitalize;
+    width: 100px;
+    height: 30px;
+    border-radius: 20px;
+}

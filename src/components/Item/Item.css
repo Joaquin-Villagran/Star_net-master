@@ -1,0 +1,32 @@
+.item_Card_container {
+    display: flex;
+    width: 25rem;
+    min-height: 15rem;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 5rem;
+    border-radius: 10px;
+    border: white(0, 0, 0) thin solid;
+    box-shadow: 20px 20px 60px white, -20px -20px 60px white;
+}
+.item_title {
+    color: black;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+}
+.item_title h2 {
+    color: black;
+    font-size: 1.5rem;
+    transition: all 0.4s;
+}
+.item_title:hover h2 {
+    color: black;
+}
+.item_img {
+    width: 15rem;
+}
+.item_img img {
+    width: 100%;
+}

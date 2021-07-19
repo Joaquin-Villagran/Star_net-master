@@ -1,0 +1,6 @@
+[
+    {"id":1, "category":"Asus", "title":"Notebook Asus", "price":900},
+    {"id":2, "category":"MSI", "title":"Notebook MSI", "price":1000},
+    {"id":3, "category":"Apple", "title":"Notebook APPLE", "price":870},
+    {"id":4, "category":"Predator", "title":"Notebook Predator", "price":700}
+]
