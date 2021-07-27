@@ -2,7 +2,7 @@
 
 import React, { useState, useContext } from "react";
 import "./ProductCategoryList.css";
-import { Dimmer, Loader } from "semantic-ui-react";
+import { Button, Dimmer, Loader, Modal, Image } from "semantic-ui-react";
 
 // data base
 // import database from '../../DATA/data.json'
@@ -40,52 +40,87 @@ export default function ItemDetail({ param, spiner }) {
       setCart([...cart, { ...product, quantity: 1 }]);
     }
   };
+  const [open, setOpen] = useState(false);
 
   return (
     <>
       {loading ? (
         // <Spiner />
         <Dimmer active>
-          <Loader content="Loading" />
+          <Loader content="Cargando Pagina" />
         </Dimmer>
       ) : (
-        // <h1>HOLAAA</h1>
         <>
-          <div className="product_list_card">
-            <div className="product_img">
-              <img src={`${param.img}`} alt={`${param.title}`} />
-            </div>
-            <div className="product_content">
-              <h2>{param.title}</h2>
-              <h2 className="detail_price">
-                ${param.price} <small>.99</small>{" "}
-              </h2>
-              {/* <h2 className='detalles' onClick={()=>{detail(param.description)}}>detalles</h2> */}
-              <div className="detail_buttons">
-                {visible ? (
-                  <>
-                    <button className="button-1" onClick={() => addCarrito()}>
-                      Agregar al carrito
-                    </button>
-                    <Link to="/Categories">
-                      <button className="button-2">Volver atras</button>
-                    </Link>
-                  </>
-                ) : (
-                  <>
-                    <Link to="/Categories">
-                      <button
-                        className="button-3"
-                        onClick={() => setVisible(true)}
+
+          <div className="productCategory">
+            <div className="tarjeta">
+              <div>
+                <img
+                  className="detail_img"
+                  src={`${param.img}`}
+                  alt={`${param.title}`}
+                />
+              </div>
+              <div>
+                <h2>{param.title}</h2>
+                <h2>${param.price}</h2>
+                <div>
+                  {visible ? (
+                    <>
+                      <Button
+                        positive
+                        className="button-1"
+                        onClick={() => addCarrito()}
                       >
-                        Seguir Viendo
-                      </button>
-                    </Link>
-                    <Link to="/ShoppingCart">
-                      <button className="button-4">Comprar ahora</button>
-                    </Link>
-                  </>
-                )}
+                        Agregar al carrito
+                      </Button>
+
+                      <Modal
+                        onClose={() => setOpen(false)}
+                        onOpen={() => setOpen(true)}
+                        open={open}
+                        trigger={<Button primary>Detalles</Button>}
+                      >
+                        <Modal.Header>Detalles</Modal.Header>
+                        <Modal.Content image size="tiny">
+                          <Image size="tiny" src={param.img} wrapped />
+                        </Modal.Content>
+                        <Modal.Actions>
+                          <Button onClick={() => setOpen(false)}>Cancel</Button>
+                          <Button onClick={() => setOpen(false)} positive>
+                            Ok
+                          </Button>
+                        </Modal.Actions>
+                      </Modal>
+                      <Link to="/Categories">
+                        <Button negative className="button-2">
+                          Volver atras
+                        </Button>
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <Link to="/Categories">
+                        <Button
+                          positive
+                          className="button-3"
+                          onClick={() => setVisible(true)}
+                        >
+                          Comprar mas
+                        </Button>
+                      </Link>
+                      <Link to="/ShoppingCart">
+                        <Button
+                          primary
+                          className="button-3"
+                          onClick={() => setVisible(true)}
+                        >
+                          Ir al Carrito
+                        </Button>
+                      </Link>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
           </div>

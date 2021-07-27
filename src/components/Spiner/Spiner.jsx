@@ -11,13 +11,7 @@ const Spiner = () => (
       <Image src='/images/wireframe/short-paragraph.png' />
     </Segment>
 
-    {/* <Segment>
-      <Dimmer active inverted>
-        <Loader inverted content='Loading' />
-      </Dimmer>
-
-      <Image src='/images/wireframe/short-paragraph.png' />
-    </Segment> */}
+    
   </div>
 )
 

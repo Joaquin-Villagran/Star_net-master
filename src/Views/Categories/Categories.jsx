@@ -5,7 +5,7 @@ import CategoryListContainer from '../../components/CategoryListContainer/Catego
 function Categories() {
     return (
         <div>
-            <h1>Categorias</h1>
+            <h1>CATEGORIAS</h1>
             <CategoryListContainer />
         </div>
     )

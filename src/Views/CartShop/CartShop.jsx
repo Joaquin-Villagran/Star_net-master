@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./CartShop.css";
-import { Button, Modal } from "semantic-ui-react";
+import { Button, Modal, Item, Label } from "semantic-ui-react";
 
 import { CartContext } from "../../Context/Context";
 function CartShop() {
@@ -36,38 +36,78 @@ function CartShop() {
     }
   };
   const [open, setOpen] = React.useState(false);
+  const [abrir, setAbierto] = React.useState(false);
 
   return (
-    <div className="CartShop_container">
-      <h1>Tus Productos</h1>
+    <div className="containerf">
+      <h1 className="titulo">TUS PRODUCTOS</h1>
       {cart.map((item, index) => (
-        <div key={index} className="CartShop_Card">
-          <div className="CartShop_head">
-            <img className="CS_img" src={`${item.img}`} alt={item.title} />
-            <p className="CS_title">{item.title}</p>
-          </div>
-          <div className="CS_body">
-            <p className="CS_quantity">
-              Cantidad: <b>{item.quantity}</b>
-            </p>
-            <p className="CS_price">$:{item.price * item.quantity}</p>
-          </div>
-
-          <div className="CS_buttons">
-            <button onClick={() => add(item)}>sumar</button>
-            <button onClick={() => onRemove(item)}>
-              {item.quantity > 1 ? "restar" : "borrar"}
-            </button>
-          </div>
+        <div>
+          <Item.Group key={index} divided>
+            <Item>
+              <Item.Image src={`${item.img}`} alt={item.title} />
+              <Item.Content>
+                <br></br>
+                <Item.Header as="a">{item.title}</Item.Header>
+                <Item.Meta>
+                  <span className="cinema">
+                    <strong>Cantidad : {item.quantity}</strong>
+                  </span>
+                </Item.Meta>
+                <Item.Description>
+                  <Modal
+                    centered={false}
+                    open={abrir}
+                    onClose={() => setAbierto(false)}
+                    onOpen={() => setAbierto(true)}
+                    trigger={<Button color="blue">Detalles</Button>}
+                  >
+                    <Modal.Header>DETALLES</Modal.Header>
+                    <Modal.Content>
+                      <Modal.Description>{item.description}</Modal.Description>
+                    </Modal.Content>
+                    <Modal.Actions>
+                      <Button onClick={() => setAbierto(false)}>OK</Button>
+                    </Modal.Actions>
+                  </Modal>
+                  <br />
+                  <br />
+                  <Button
+                    onClick={() => add(item)}
+                    basic
+                    inverted
+                    color="green"
+                  >
+                    +
+                  </Button>
+                  <Label tag as='a'>{"$:" + item.price * item.quantity}</Label>
+                  <Button
+                    onClick={() => onRemove(item)}
+                    basic
+                    inverted
+                    color="red"
+                  >
+                    -
+                  </Button>{" "}
+                </Item.Description>
+                <Item.Extra></Item.Extra>
+              </Item.Content>
+            </Item>
+          </Item.Group>
+          <hr />
         </div>
       ))}
-      <div>
+      <div className="botonesCompras">
         <Modal
           centered={false}
           open={open}
           onClose={() => setOpen(false)}
           onOpen={() => setOpen(true)}
-          trigger={<Button positive>Comprar</Button>}
+          trigger={
+            <Button circular compact inverted color="green">
+              Comprar
+            </Button>
+          }
         >
           <Modal.Header>Productos Confirmados ✔️ </Modal.Header>
           <Modal.Content>
@@ -80,7 +120,10 @@ function CartShop() {
           </Modal.Actions>
         </Modal>
         <Button
-          negative
+          inverted
+          color="red"
+          circular
+          compact
           onClick={() => {
             setCart([]);
           }}

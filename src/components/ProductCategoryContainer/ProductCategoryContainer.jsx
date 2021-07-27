@@ -9,10 +9,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import "./ProductCategoryContainer.css";
-// components
 import ProductCategoryList from "../ProductCategoryList/ProductCategoryList";
-// data base
-//import database from '../../DATA/data.json'
 import { getFirestore } from "../../FIREBASE/Firebase";
 
 export default function ProductCategoryContainer() {
@@ -28,7 +25,6 @@ export default function ProductCategoryContainer() {
     itemCollection
       .get()
       .then((querySnapshot) => {
-        // creamos una const asignandole una comparacion que deseemos hacer
         const filter = querySnapshot.docs.filter(
           (doc) => doc.data().category === category
         );
@@ -36,16 +32,11 @@ export default function ProductCategoryContainer() {
           console.log("sin items");
         } else if (filter) {
           setItem(filter.map((x) => x.data()));
-          // con este metodo estamos discriminadno en categorias
-          // si queremos un item individual debemos comparar los id en lugar de category
-          // tenemos que usar el metodo .find en el querySnapshot de {filter}
         }
       })
       .catch((error) => {
         console.log("Error al buscar item...", error);
       });
-
-    // setData(database)
   }, [category]);
 
   return (
