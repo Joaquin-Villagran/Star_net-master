@@ -1,16 +1,13 @@
 import React, { useContext } from "react";
 import "./CartShop.css";
-import { Button, Modal, Item, Label } from "semantic-ui-react";
+import { Button, Form, Modal, Item, Label } from "semantic-ui-react";
 
 import { CartContext } from "../../Context/Context";
 function CartShop() {
-  // traemos el contexto
   const [cart, setCart] = useContext(CartContext);
 
-  // declaramos dos funciones para poder manejar la cantidad de cada item
-
   const add = (product) => {
-    const exist = cart.find((x) => x.id === product.id); // exist hace referencia a un item que coindida con la condicion de id
+    const exist = cart.find((x) => x.id === product.id);
     if (exist) {
       setCart(
         cart.map((item) =>
@@ -19,10 +16,8 @@ function CartShop() {
             : item
         )
       );
-      // {/* si el item coincide le vajamos la cantidad en 1 */}
     }
   };
-  // CAMBIAR LOS .TITLE POR .ID PRIEMRO CAMBIAR EN FIREBASE
   const onRemove = (product) => {
     const exist = cart.find((x) => x.id === product.id);
     if (exist.quantity === 1) {
@@ -80,7 +75,9 @@ function CartShop() {
                   >
                     +
                   </Button>
-                  <Label tag as='a'>{"$:" + item.price * item.quantity}</Label>
+                  <Label tag as="a">
+                    {"$:" + item.price * item.quantity}
+                  </Label>
                   <Button
                     onClick={() => onRemove(item)}
                     basic
@@ -109,15 +106,41 @@ function CartShop() {
             </Button>
           }
         >
-          <Modal.Header>Productos Confirmados ✔️ </Modal.Header>
+          <Modal.Header>Ingresar Datos Personales</Modal.Header>
           <Modal.Content>
             <Modal.Description>
-              Muchas Gracias por Comprar en JT. ¡Felicidades!
+              {" "}
+              <Form>
+                <Form.Group unstackable widths={2}>
+                  <Form.Input
+                    label="Primer Nombre"
+                    placeholder="Primer Nombre"
+                  />
+                  <Form.Input
+                    label="Segundo nombre"
+                    placeholder="Segundo nombre"
+                  />
+                </Form.Group>
+                <Form.Group widths={2}>
+                  <Form.Input label="Dirección" placeholder="Dirección" />
+                  <Form.Input label="Telefono" placeholder="Telefono" />
+                </Form.Group>
+                <Form.Checkbox label="Acepto terminos y condiciones" />
+                <Button
+                  type="submit"
+                  positive
+                  onClick={() => {
+                    alert(
+                      "Felicidades por la compra de los productos por JT Online" +
+                        setOpen(false)
+                    );
+                  }}
+                >
+                  Comprar
+                </Button>
+              </Form>
             </Modal.Description>
           </Modal.Content>
-          <Modal.Actions>
-            <Button onClick={() => setOpen(false)}>OK</Button>
-          </Modal.Actions>
         </Modal>
         <Button
           inverted
