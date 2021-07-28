@@ -2,7 +2,7 @@
 
 Este ecommrce está creada para comprar via online productos electronicos.
 
-## Installation
+## Instalación
 
 Para instalar y ejecutar este proyecto simplemente escriba y ejecute
 
